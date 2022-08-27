@@ -1,9 +1,11 @@
 package br.com.robbo.renegociacao.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -13,7 +15,7 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Setter
@@ -32,12 +34,5 @@ public class Cliente {
 
     @Setter
     private String telefone;
-
-    @OneToMany
-    private List<Debito> debitos;
-
-
-
-
 
 }

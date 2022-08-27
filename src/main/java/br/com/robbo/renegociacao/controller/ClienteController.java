@@ -36,4 +36,5 @@ public class ClienteController {
         final Cliente clienteCriado = clienteService.createCliente(cliente);
         return ResponseEntity.ok().body(clienteCriado);
     }
+
 }

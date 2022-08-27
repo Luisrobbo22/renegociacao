@@ -1,23 +1,28 @@
 package br.com.robbo.renegociacao.entity;
 
+import br.com.robbo.renegociacao.DTO.DebitoDTO;
 import br.com.robbo.renegociacao.entity.enums.TipoPagamentoEnum;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb_debito")
+@Table(name = "tb_pagamento")
 public class Pagamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "dt_pagamento")
@@ -28,8 +33,9 @@ public class Pagamento {
 
     @Column(name = "tp_pagamento")
     @Enumerated(EnumType.STRING)
+    @JsonProperty(namespace = "tipoPagamento")
     private TipoPagamentoEnum tipoPagamentoEnum;
 
-    @OneToOne
-    private Debito debito;
+    @Transient
+    private List<DebitoDTO> debitoDTO;
 }

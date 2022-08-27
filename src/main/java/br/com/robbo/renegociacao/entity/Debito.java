@@ -1,6 +1,7 @@
 package br.com.robbo.renegociacao.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -16,7 +18,7 @@ import java.util.Calendar;
 public class Debito {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "ds_debito")
@@ -27,12 +29,12 @@ public class Debito {
 
     private BigDecimal valor;
 
-    private boolean isDebitoAberto;
+    private boolean isDebitoAberto = Boolean.TRUE;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Cliente cliente;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Pagamento pagamento;
 
 }
