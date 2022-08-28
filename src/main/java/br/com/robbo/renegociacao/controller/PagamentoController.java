@@ -22,10 +22,4 @@ public class PagamentoController {
         Pagamento pagamentoCriado = pagamentoService.createPagamento(pagamento, email);
         return ResponseEntity.accepted().body(pagamentoCriado);
     }
-
-    @GetMapping("/")
-    public ResponseEntity<List<Pagamento>> findAll() {
-        return ResponseEntity.ok().body(pagamentoService.findAll());
-    }
-
 }

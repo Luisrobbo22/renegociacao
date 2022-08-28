@@ -1,6 +1,5 @@
 package br.com.robbo.renegociacao.DTO;
 
-import br.com.robbo.renegociacao.entity.Cliente;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,12 +10,14 @@ import java.util.Calendar;
 @Builder
 public class DebitoDTO {
 
+    private Integer id;
+
     private String descricaoDebito;
 
     private Calendar vencimento;
 
     private BigDecimal valor;
 
-    private boolean isDebitoAberto = Boolean.TRUE;
+    private boolean isDebitoAberto;
 
 }

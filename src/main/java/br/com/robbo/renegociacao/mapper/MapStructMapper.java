@@ -15,9 +15,11 @@ public interface MapStructMapper {
     MapStructMapper INSTANCE = Mappers.getMapper(MapStructMapper.class);
 
     @Mapping(source = "descricaoDebito", target = "descricaoDebito")
+    @Mapping(source = "id", target = "id")
     DebitoDTO dtoToDebito(Debito debito);
 
     @Mapping(source = "descricaoDebito", target = "descricaoDebito")
+    @Mapping(source = "id", target = "id")
     List<DebitoDTO> dtosToDebitos(List<Debito> debitos);
 
 

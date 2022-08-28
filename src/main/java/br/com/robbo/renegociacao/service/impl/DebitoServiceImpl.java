@@ -2,6 +2,7 @@ package br.com.robbo.renegociacao.service.impl;
 
 import br.com.robbo.renegociacao.DTO.DebitoDTO;
 import br.com.robbo.renegociacao.entity.Debito;
+import br.com.robbo.renegociacao.entity.Pagamento;
 import br.com.robbo.renegociacao.mapper.MapStructMapper;
 import br.com.robbo.renegociacao.repository.DebitoRepository;
 import br.com.robbo.renegociacao.service.DebitoService;
@@ -22,6 +23,11 @@ public class DebitoServiceImpl implements DebitoService {
     }
 
     @Override
+    public List<Debito> getDebitosByClienteEmailAndDebitosAberto(String email, String isDebitoAberto) {
+        return debitoRepository.findDebitosByClienteEmailAndDebitosAbertoEqualsTrue(email);
+    }
+
+    @Override
     public List<DebitoDTO> updateStatusDebito(List<Debito> debitos) {
         debitos.forEach(d -> d.setDebitoAberto(Boolean.FALSE));
         List<Debito> debitoList = debitoRepository.saveAll(debitos);
@@ -34,24 +40,9 @@ public class DebitoServiceImpl implements DebitoService {
         return debitoRepository.saveAll(debitos);
     }
 
-//    private List<DebitoDTO> mapperDebitos(List<Debito> debitos) {
-//        List<DebitoDTO> debitoDTOS = new ArrayList<>();
-//        for (int i = 0; i < debitos.size(); i++) {
-//            debitoDTOS.debitos.get(i).getCliente();
-//
-//        }
-//
-//
-//        for (Debito debito: debitos) {
-//            debitoDTOS.forEach(debitoDTO -> {
-//                debitoDTO.setVencimento(debito.getVencimento());
-//                debitoDTO.setDebitoAberto(debito.isDebitoAberto());
-//                debitoDTO.setValor(debito.getValor());
-//                debitoDTO.setDescricaoDebito(debito.getDescricaoDebito());
-//            });
-//        }
-//
-//        return debitoDTOS;
-//    }
+    @Override
+    public void updatePagamentoDebito(Pagamento pagamentoRealizado, List<DebitoDTO> dtos) {
+        dtos.forEach(debitoDTO -> debitoRepository.updateIdPagamento(pagamentoRealizado.getId(), debitoDTO.getId()));
+    }
 
 }

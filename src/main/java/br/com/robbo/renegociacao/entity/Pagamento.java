@@ -2,7 +2,6 @@ package br.com.robbo.renegociacao.entity;
 
 import br.com.robbo.renegociacao.DTO.DebitoDTO;
 import br.com.robbo.renegociacao.entity.enums.TipoPagamentoEnum;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,8 +32,8 @@ public class Pagamento {
 
     @Column(name = "tp_pagamento")
     @Enumerated(EnumType.STRING)
-    @JsonProperty(namespace = "tipoPagamento")
     private TipoPagamentoEnum tipoPagamentoEnum;
+
 
     @Transient
     private List<DebitoDTO> debitoDTO;
